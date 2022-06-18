@@ -8,9 +8,9 @@ services:
     # Nome do container para facilitar execução
     container_name: talker_manager
     # Mesmo que `docker run -t`
-    tty: true
+    # tty: true
     # Mesmo que `docker run -i`
-    stdin_open: true
+    # stdin_open: true
     # Substitui o comando padrão da imagem do node
     command: bash
     # Restarta a imagem caso algo a faça parar
