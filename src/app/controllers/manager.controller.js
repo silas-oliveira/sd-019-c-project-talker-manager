@@ -11,9 +11,10 @@ const managerController = {
     return result;
   },
 
-  async add(body) {
+  async add(id) {
+    console.log('id', id);
     // const data = await todosValidator.bodyAdd(body)
-    const result = await managerService.add(data);
+    const result = await managerService.add(id);
     return result;
   }
 }

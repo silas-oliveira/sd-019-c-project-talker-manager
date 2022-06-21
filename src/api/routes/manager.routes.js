@@ -4,9 +4,15 @@ const { Router } = require("express");
 
 const managerRoute = Router();
 
-managerRoute.get('/:id', async () => {
-  const result = await managerController.get();
-  return res.status(200).json(result)
+managerRoute.get('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await managerController.get(id);
+    return res.status(200).json(result)
+  } catch (error) {
+    next(error);
+  }
+
 });
 
 // managerRoute.put('/:id', async () => { });
