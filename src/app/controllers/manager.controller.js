@@ -1,4 +1,4 @@
-const { managerService } = require("../services/manager.service");
+const { managerService } = require('../services/manager.service');
 
 const managerController = {
   async list() {
@@ -13,10 +13,9 @@ const managerController = {
 
   async add(id) {
     console.log('id', id);
-    // const data = await todosValidator.bodyAdd(body)
     const result = await managerService.add(id);
     return result;
-  }
-}
+  },
+};
 
 module.exports = { managerController };

@@ -15,12 +15,10 @@ api.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
-api.use("/talker", managerRoute);
+api.use('/talker', managerRoute);
 
 api.listen(PORT, () => {
   console.log('Online');
 });
 
-api.use(errorHandler)
-
-
+api.use(errorHandler);

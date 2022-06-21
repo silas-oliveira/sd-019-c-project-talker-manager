@@ -1,6 +1,5 @@
-const { personNotFound } = require('../../_services/_services');
-
 const fs = require('fs').promises;
+const { personNotFound } = require('../../_services/_services');
 
 const managerService = {
   async get(id) {
@@ -17,10 +16,10 @@ const managerService = {
     return JSON.parse(result);
   },
 
-  async add(data) {
+  async add() {
     const result = 'usuario pelo id';
     return result;
-  }
-}
+  },
+};
 
 module.exports = { managerService };
