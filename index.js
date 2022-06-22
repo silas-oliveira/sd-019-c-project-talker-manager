@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { managerRoute } = require('./src/api/routes/manager.routes');
-const errorHandler = require('./src/api/middlewares/error.middlware');
+const { errorHandler } = require('./src/api/middlewares/error.middlware');
 require('express-async-errors');
 
 const api = express();
@@ -16,6 +16,7 @@ api.get('/', (_request, response) => {
 });
 
 api.use('/talker', managerRoute);
+api.use('/login', managerRoute);
 
 api.listen(PORT, () => {
   console.log('Online');
