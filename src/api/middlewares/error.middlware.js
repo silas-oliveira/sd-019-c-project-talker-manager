@@ -10,9 +10,18 @@ const errorHandler = (err, _req, res, next) => {
     //   res.status(404).json({ message })
     //   break
     default:
-      return res.status(401).json({ message });
+      return res.status(400).json({ message });
   }
   next();
 };
 
-module.exports = errorHandler;
+// const error = (err, _req, res, next) => {
+//   const { message } = err;
+
+//   if (err) {
+//     res.status(400).json(message);
+//   }
+//   next();
+// };
+
+module.exports = { errorHandler }; 

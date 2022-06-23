@@ -1,30 +1,17 @@
 const { Router } = require('express');
 const { managerController } = require('../../app/controllers/manager.controller');
 
-const managerRoute = Router();
+const managerRouter = Router();
 
-managerRoute.get('/:id', async (req, res, next) => {
-  try {
-    const { id } = req.params;
-    const result = await managerController.get(id);
-    return res.status(200).json(result);
-  } catch (error) {
-    next(error);
-  }
-});
-
-// managerRoute.put('/:id', async () => { });
-
-// managerRoute.delete('/:id', async () => { });
-
-managerRoute.post('/', async (req, res) => {
-  const result = await managerController.add(req.body);
+managerRouter.get('/:id', async (req, res, _next) => {
+  const { id } = req.params;
+  const result = await managerController.get(id);
   return res.status(200).json(result);
 });
 
-managerRoute.get('/', async (req, res) => {
+managerRouter.get('/', async (_req, res) => {
   const result = await managerController.list();
   return res.status(200).json(result);
 });
 
-module.exports = { managerRoute };
+module.exports = { managerRouter };

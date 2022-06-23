@@ -1,5 +1,6 @@
 const fs = require('fs').promises;
-const { personNotFound } = require('../../_services/_services');
+const { nanoid } = require('nanoid');
+const { personNotFound } = require('../../_throwError/_throwError');
 
 const managerService = {
   async get(id) {
@@ -17,8 +18,9 @@ const managerService = {
   },
 
   async add() {
-    const result = 'usuario pelo id';
-    return result;
+    const token = nanoid(16);
+    console.log(token);
+    return { token };
   },
 };
 
