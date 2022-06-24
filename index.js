@@ -1,7 +1,7 @@
 const express = require('express');
 require('express-async-errors');
 const bodyParser = require('body-parser');
-const { errorHandler } = require('./src/api/middlewares/error.middlware');
+const { errorHandler } = require('./src/api/middlewares/error.middleware');
 const { managerRouter, loginRouter } = require('./src/api/routes');
 
 const api = express();

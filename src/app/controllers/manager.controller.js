@@ -1,4 +1,6 @@
 const loginShema = require('../../schemas/loginSchema');
+const talkerSchema = require('../../schemas/talkerSchema');
+const { tokenNotFound, invalidToken, underAge } = require('../../_throwError/_throwError');
 const { managerService } = require('../services/manager.service.js');
 
 const managerController = {
@@ -12,11 +14,23 @@ const managerController = {
     return result;
   },
 
-  async add(body) {
+  async add(body, auth) {
+    const { name, age, talk } = body;
+    const { authorization } = auth;
+    if (!authorization) return tokenNotFound();
+    if (authorization.length < 16) return invalidToken();
+    const { error } = talkerSchema.validate({ name, age, talk });
+    if (error) throw error;
+    if (age < 18) return underAge();
+    const result = await managerService.add(body);
+    return result;
+  },
+
+  async login(body) {
     const { email, password } = body;
     const { error } = loginShema.validate({ email, password });
     if (error) throw error;
-    const result = await managerService.add();
+    const result = await managerService.login();
     return result;
   },
 };

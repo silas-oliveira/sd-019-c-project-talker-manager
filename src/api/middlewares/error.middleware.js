@@ -6,9 +6,10 @@ const errorHandler = (err, _req, res, next) => {
     case 'personNotFound':
       res.status(404).json({ message });
       break;
-    // case 'NotFoundError':
-    //   res.status(404).json({ message })
-    //   break
+    case 'tokenNotFound':
+    case 'invalidToken':
+      res.status(401).json({ message });
+      break;
     default:
       return res.status(400).json({ message });
   }

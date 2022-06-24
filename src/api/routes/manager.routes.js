@@ -14,4 +14,9 @@ managerRouter.get('/', async (_req, res) => {
   return res.status(200).json(result);
 });
 
+managerRouter.post('/', async (req, res, _next) => {
+  const result = await managerController.add(req.body, req.headers);
+  return res.status(201).json(result);
+});
+
 module.exports = { managerRouter };
