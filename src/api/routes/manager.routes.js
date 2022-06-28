@@ -19,4 +19,9 @@ managerRouter.post('/', async (req, res, _next) => {
   return res.status(201).json(result);
 });
 
+managerRouter.put('/:id', async (req, res, _next) => {
+  const result = await managerController.edit(req.params, req.body, req.headers);
+  return res.status(200).json(result);
+});
+
 module.exports = { managerRouter };
