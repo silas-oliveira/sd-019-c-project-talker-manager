@@ -4,7 +4,7 @@ const { personNotFound } = require('../../_throwError/_throwError');
 
 const managerService = {
   async database() {
-    return await fs.readFile('./talker.json', 'utf-8');
+    return fs.readFile('./talker.json', 'utf-8');
   },
 
   async list() {
@@ -44,7 +44,7 @@ const managerService = {
     const data = JSON.parse(db);
     const { id } = params;
     const talkersEdited = data.map((person) => {
-     if(person.id === +id) {
+     if (person.id === +id) {
         const result = { ...person, ...body };
         return result;
      }
@@ -52,8 +52,8 @@ const managerService = {
     });
     const talkerEdited = talkersEdited.find((person) => person.id === +id);
     await fs.writeFile('./talker.json', JSON.stringify(talkersEdited));
-    return talkerEdited
-  }
+    return talkerEdited;
+  },
 };
 
 module.exports = { managerService };
