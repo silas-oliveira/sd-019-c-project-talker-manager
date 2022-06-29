@@ -35,9 +35,6 @@ const managerController = {
   },
   
   async edit(params, body, headers) {
-    console.log('params', params);
-    console.log('body', body);
-    console.log('headers', headers);
     const { name, age, talk } = body;
     const { authorization } = headers;
     if (!authorization) return tokenNotFound();
@@ -46,6 +43,14 @@ const managerController = {
     if (error) throw error;
     if (age < 18) return underAge();
     const result = await managerService.edit(params, body);
+    return result;
+  },
+
+  async delete(params, auth) {
+    const { authorization } = auth;
+    if (!authorization) return tokenNotFound();
+    if (authorization.length < 16) return invalidToken();
+    const result = await managerService.delete(params);
     return result;
   },
 
