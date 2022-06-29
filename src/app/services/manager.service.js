@@ -55,12 +55,10 @@ const managerService = {
     return talkerEdited;
   },
 
-  async delete(params) {
+  async delete(id) {
     const db = await this.database();
     const data = JSON.parse(db);
-    const { id } = params;
     const personDeleted = data.filter((person) => person.id !== +id);
-    console.log('personDeleted', personDeleted);
     await fs.writeFile('./talker.json', JSON.stringify(personDeleted));
   },
 };

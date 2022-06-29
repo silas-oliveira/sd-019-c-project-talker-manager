@@ -48,9 +48,10 @@ const managerController = {
 
   async delete(params, auth) {
     const { authorization } = auth;
+    const { id } = params;
     if (!authorization) return tokenNotFound();
     if (authorization.length < 16) return invalidToken();
-    const result = await managerService.delete(params);
+    const result = await managerService.delete(id);
     return result;
   },
 
