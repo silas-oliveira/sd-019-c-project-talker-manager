@@ -58,7 +58,9 @@ const managerService = {
   async delete(id) {
     const db = await this.database();
     const data = JSON.parse(db);
+    console.log('data', data);
     const personDeleted = data.filter((person) => person.id !== +id);
+    console.log('personDeleted', personDeleted);
     await fs.writeFile('./talker.json', JSON.stringify(personDeleted));
   },
 };

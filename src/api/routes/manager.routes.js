@@ -26,7 +26,7 @@ managerRouter.put('/:id', async (req, res, _next) => {
 
 managerRouter.delete('/:id', async (req, res, _next) => {
   await managerController.delete(req.params, req.headers);
-  return res.status(204);
+  return res.status(204).json();
 });
 
 module.exports = { managerRouter };
