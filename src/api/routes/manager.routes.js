@@ -3,13 +3,18 @@ const { managerController } = require('../../app/controllers/manager.controller'
 
 const managerRouter = Router();
 
+managerRouter.get('/search', async (req, res, _next) => {
+  const result = await managerController.search(req.headers, req.query);
+  return res.status(200).json(result);
+});
+
 managerRouter.get('/:id', async (req, res, _next) => {
   const { id } = req.params;
   const result = await managerController.get(id);
   return res.status(200).json(result);
 });
 
-managerRouter.get('/', async (_req, res) => {
+managerRouter.get('/', async (_req, res, _next) => {
   const result = await managerController.list();
   return res.status(200).json(result);
 });

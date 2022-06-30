@@ -44,11 +44,11 @@ const managerService = {
     const data = JSON.parse(db);
     const { id } = params;
     const talkersEdited = data.map((person) => {
-     if (person.id === +id) {
+      if (person.id === +id) {
         const result = { ...person, ...body };
         return result;
-     }
-     return person;
+      }
+      return person;
     });
     const talkerEdited = talkersEdited.find((person) => person.id === +id);
     await fs.writeFile('./talker.json', JSON.stringify(talkersEdited));
@@ -62,6 +62,14 @@ const managerService = {
     const personDeleted = data.filter((person) => person.id !== +id);
     console.log('personDeleted', personDeleted);
     await fs.writeFile('./talker.json', JSON.stringify(personDeleted));
+  },
+
+  async search(q) {
+    const db = await this.database();
+    const talkers = JSON.parse(db);
+    const talkersFiltered = talkers
+    .filter((talker) => talker.name.toLowerCase().includes(q.toLowerCase()));
+    return talkersFiltered;
   },
 };
 

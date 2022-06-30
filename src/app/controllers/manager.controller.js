@@ -55,6 +55,15 @@ const managerController = {
     return result;
   },
 
+  async search(headers, query) {
+    const { authorization } = headers;
+    const { q } = query;
+    console.log('query', q);
+    if (!authorization) return tokenNotFound();
+    if (authorization.length < 16) return invalidToken();
+    const result = await managerService.search(q);
+    return result;
+  },
 };
 
 module.exports = { managerController };
